@@ -2,6 +2,8 @@
 
 This guide records the commands used in this lab, what each command does, why the step matters, and how to verify the result. It distinguishes completed steps from checks that are still pending.
 
+> **Actual deployment:** Wazuh is running on Kali Linux through Docker Compose. Windows 11 is the monitored endpoint. Ubuntu Server was installed as a separate VM but was not used to deploy or run Wazuh; it remains a powered-off option for a possible future migration.
+
 > **Lab scope:** Use only your own Windows host and VirtualBox VMs. Keep the lab on NAT/Host-only networking. Do not expose Wazuh ports or the dashboard to the public internet.
 
 ## 1. Prepare the virtual machines
@@ -19,9 +21,11 @@ Observed VM allocation:
 
 **Resource warning:** Wazuh's all-in-one deployment recommends more memory than this VM has. The host laptop also has 8 GB RAM. The stack did start, but swap use and host freezes were observed. Avoid running another large VM at the same time. Consider upgrading host RAM before doing extended investigations.
 
-### 1.2 Ubuntu VM
+### 1.2 Ubuntu Server VM — installed, not deployed
 
-An Ubuntu Server 24.04.5 VM was installed earlier but was not used for this deployment. It was left powered off to avoid competing for the host's limited memory. Do not run it alongside Kali on this machine.
+An Ubuntu Server 24.04.5 VM was installed and prepared, but **Wazuh was not installed or run on it**. We chose Kali Linux with Docker Compose for the actual deployment because that setup was already working and avoided adding another active VM to a host with only 8 GB of RAM. Ubuntu was left powered off to conserve resources.
+
+**Possible future use:** Ubuntu Server can be considered as an alternative, dedicated host for the Wazuh stack if the lab is later rebuilt or migrated. That migration has not been performed or tested, so Ubuntu must not be described as the current Wazuh server. Do not run the Ubuntu VM alongside Kali on this machine while memory is limited.
 
 ## 2. Update Kali
 
